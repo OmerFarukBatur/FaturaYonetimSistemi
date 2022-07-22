@@ -1,0 +1,135 @@
+﻿@{
+    ViewData["Title"] = "NewUser";
+}
+
+
+<div class="container">
+    <div class="row justify-content-center">
+
+        <div class="col-xl-12 col-lg-12 col-md-12">
+
+            <div class="card o-hidden border-0 shadow-lg my-5">
+                <div class="card-body p-0">
+                    <div class="row">
+
+                        <div class="col-lg-12">
+                            <div class="p-5">
+                                <div class="text-center">
+                                    <h1 class="h4 text-gray-900 mb-4">Kullanıcı Kayıt Formu</h1>
+                                </div>
+
+                                <form class="user">
+
+                                    <div class="form-group col-12">
+                                        <div class="form-group col-md-6 float-left">
+                                            <label class="col-form-label col-4 float-left">Ad:</label>
+                                            <input type="text" class="form-control form-control-user col-8 float-right"
+                                                   id="firstName" aria-describedby="firstNameHelp"
+                                                   placeholder="örn. Kaan">
+                                        </div>
+
+                                        <div class="form-group col-md-6 float-right">
+                                            <label class="col-form-label col-4 float-left">Soyad:</label>
+                                            <input type="text" class="form-control form-control-user col-8 float-right"
+                                                   id="lastName" aria-describedby="lastNameHelp"
+                                                   placeholder="örn. Baş">
+                                        </div>
+
+                                    </div>
+
+
+                                    <div class="form-group col-12">
+                                        <div class="form-group col-md-6 float-left">
+                                            <label class="col-form-label col-4 float-left">TC No:</label>
+                                            <input type="text" class="form-control form-control-user col-8 float-right"
+                                                   id="tcNumber" aria-describedby="tcNumberHelp"
+                                                   placeholder="örn. 57492237278">
+                                        </div>
+
+                                        <div class="form-group col-md-6 float-right">
+                                            <label class="col-form-label col-4 float-left">Email:</label>
+                                            <input type="email" class="form-control form-control-user col-8 float-right"
+                                                   id="email" aria-describedby="emailHelp"
+                                                   placeholder="örn. abc@abc.com">
+                                        </div>
+                                    </div>
+
+
+
+                                    <div class="form-group col-12">
+                                        <div class="form-group col-md-6 float-left">
+                                            <label class="col-form-label col-4 float-left">Telefon No:</label>
+                                            <input type="text" class="form-control form-control-user col-8 float-right"
+                                                   id="phoneNumber" aria-describedby="phoneNumberHelp"
+                                                   placeholder="örn. 0537 651 25 89">
+                                        </div>
+
+                                        <div class="form-group col-md-6 float-right">
+                                            <label class="col-form-label col-4 float-left">Daire Durumu:</label>
+
+                                            <div class="col-8 float-right">
+                                                <select class="form-control custom-select" id="housingStatus">
+                                                    <option selected>Seçiniz...</option>
+                                                    <option value="1">Kiracı</option>
+                                                    <option value="2">Ev Sahibi</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+
+
+                                    <div class="form-group col-12">
+                                        <div class="form-group col-md-6 float-right">
+                                            <label class="col-form-label col-4 float-left">Kullanıcı Durumu:</label>
+
+                                            <div class="col-8 float-right">
+                                                <select class="form-control custom-select" id="userStatus">
+                                                    <option selected>Seçiniz...</option>
+                                                    <option value="3">Pasif</option>
+                                                    <option value="4">Aktif</option>
+                                                </select>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group col-md-6 float-left">
+                                            <label class="col-form-label col-4 float-left">Kullanıcı Rolü:</label>
+
+                                            <div class="col-8 float-right">
+                                                <select class="form-control custom-select" id="userRole">
+                                                    <option selected>Seçiniz...</option>
+                                                    <option value="5">Kullanıcı</option>
+                                                    <option value="6">Yönetici</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <br />
+                                    <br />
+                                    <br />
+                                    <br />
+                                    <br />
+                                    <br />
+                                    <br />
+                                    <br />
+                                    <br />
+                                    <br />
+                                    <br />
+                                    <a asp-action="Index" asp-controller="UserAdmin" class="btn btn-primary btn-user btn-block " style="width: 250px;margin: 0 auto;font-size: medium;">
+                                        Kaydet
+                                    </a>
+                                </form>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
