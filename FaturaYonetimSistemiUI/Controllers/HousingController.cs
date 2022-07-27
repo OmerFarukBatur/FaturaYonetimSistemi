@@ -16,5 +16,9 @@ namespace FaturaYonetimSistemiUI.Controllers
         {
             return View();
         }
+        public IActionResult DeleteHousing()
+        {
+            return View();
+        }
     }
 }

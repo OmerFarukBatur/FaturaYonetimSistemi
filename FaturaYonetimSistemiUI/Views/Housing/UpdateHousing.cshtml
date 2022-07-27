@@ -3,5 +3,120 @@
     ViewData["Title"] = "UpdateHousing";
 }
 
-<h1>UpdateHousing</h1>
+<div class="container">
+    <div class="row justify-content-center">
+
+        <div class="col-xl-12 col-lg-12 col-md-12">
+
+            <div class="card o-hidden border-0 shadow-lg my-5">
+                <div class="card-body p-0">
+                    <div class="row">
+
+                        <div class="col-lg-12">
+                            <div class="p-5">
+                                <div class="text-center">
+                                    <h1 class="h4 text-gray-900 mb-4">Daire Kayıt Güncelleme Formu</h1>
+                                </div>
+
+                                <form class="user">
+
+                                    <div class="form-group col-12">
+
+                                        <div class="form-group col-md-6 float-left">
+                                            <label class="col-form-label col-4 float-left">Blok No:</label>
+
+                                            <div class="col-8 float-right">
+                                                <select class="form-control custom-select" id="BlockNumber">
+                                                    <option selected>Seçiniz...</option>
+                                                    <option value="3">A1</option>
+                                                    <option value="4">A2</option>
+                                                    <option value="5">A3</option>
+                                                    <option value="6">B1</option>
+                                                </select>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group col-md-6 float-right">
+                                            <label class="col-form-label col-4 float-left">Kat No:</label>
+                                            <input type="number" class="form-control form-control-user col-8 float-right"
+                                                   id="FloorNumber" aria-describedby="FloorNumberHelp"
+                                                   placeholder="örn. 4">
+                                        </div>
+
+                                    </div>
+
+
+                                    <div class="form-group col-12">
+
+                                        <div class="form-group col-md-6 float-left">
+                                            <label class="col-form-label col-4 float-left">Daire No:</label>
+
+                                            <div class="col-8 float-right">
+                                                <select class="form-control custom-select" id="HousNumber">
+                                                    <option selected>Seçiniz...</option>
+                                                    <option value="3">1</option>
+                                                    <option value="4">2</option>
+                                                    <option value="5">3</option>
+                                                    <option value="6">4</option>
+                                                </select>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group col-md-6 float-right">
+                                            <label class="col-form-label col-4 float-left">Daire Tipi:</label>
+
+                                            <div class="col-8 float-right">
+                                                <select class="form-control custom-select" id="HousType">
+                                                    <option selected>Seçiniz...</option>
+                                                    <option value="3">1+1</option>
+                                                    <option value="4">2+1</option>
+                                                    <option value="5">3+1</option>
+                                                </select>
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+
+
+                                    <div class="form-group col-12" >
+                                        <div class="form-group col-md-6 ">
+                                            <label class="col-form-label col-4 float-left">Daire Durumu:</label>
+
+                                            <div class="col-8 float-right">
+                                                <select class="form-control custom-select" id="housingStatus">
+                                                    <option selected>Seçiniz...</option>
+                                                    <option value="3">Pasif</option>
+                                                    <option value="4">Aktif</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <br />
+                                    <br />
+                                    <br />
+                                    <br />
+                                    <br />
+                                    <br />
+                                    <br />
+                                    <br />
+                                    <br />
+                                    <br />
+                                    <br />
+                                    <a asp-action="Index" asp-controller="Housing" class="btn btn-primary btn-user btn-block " style="width: 250px;margin: 0 auto;font-size: medium;">
+                                        Kaydet
+                                    </a>
+                                </form>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
 
