@@ -1,4 +1,5 @@
 using BusinessLayer;
+using DataAccessLayer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -26,6 +27,7 @@ namespace FaturaYonetimSistemiUI
         {
             services.AddControllersWithViews();
             services.AddBusinessLayerServices();
+            services.AddDALServices();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

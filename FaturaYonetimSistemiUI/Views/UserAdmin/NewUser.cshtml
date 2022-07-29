@@ -1,4 +1,5 @@
-﻿@{
+﻿@model EntityLayer.Entities.User;
+@{
     ViewData["Title"] = "NewUser";
 }
 
@@ -18,21 +19,23 @@
                                     <h1 class="h4 text-gray-900 mb-4">Kullanıcı Kayıt Formu</h1>
                                 </div>
 
-                                <form class="user">
+                                <form class="user" method="post">
 
                                     <div class="form-group col-12">
                                         <div class="form-group col-md-6 float-left">
                                             <label class="col-form-label col-4 float-left">Ad:</label>
                                             <input type="text" class="form-control form-control-user col-8 float-right"
-                                                   id="firstName" aria-describedby="firstNameHelp"
-                                                   placeholder="örn. Kaan">
+                                                   id="firstName" aria-describedby="firstNameHelp" name="FirstName" placeholder="örn. Kaan"
+                                                    maxlength="30" minlength="2" required >
+                                                   <span asp-validation-for="FirstName" class="text-danger float-right" ></span>
                                         </div>
 
                                         <div class="form-group col-md-6 float-right">
                                             <label class="col-form-label col-4 float-left">Soyad:</label>
                                             <input type="text" class="form-control form-control-user col-8 float-right"
-                                                   id="lastName" aria-describedby="lastNameHelp"
-                                                   placeholder="örn. Baş">
+                                                   id="lastName" aria-describedby="lastNameHelp" name="LastName" placeholder="örn. Baş"
+                                                   maxlength="30" minlength="3" required >
+                                                   <span asp-validation-for="LastName" class="text-danger float-right"></span>
                                         </div>
 
                                     </div>
@@ -42,15 +45,17 @@
                                         <div class="form-group col-md-6 float-left">
                                             <label class="col-form-label col-4 float-left">TC No:</label>
                                             <input type="text" class="form-control form-control-user col-8 float-right"
-                                                   id="tcNumber" aria-describedby="tcNumberHelp"
-                                                   placeholder="örn. 57492237278">
+                                                   id="tcNumber" aria-describedby="tcNumberHelp" name="TCNumber" placeholder="örn. 57492237278"
+                                                   required maxlength="11" minlength="11" >
+                                                   <span asp-validation-for="TCNumber" class="text-danger float-right"></span>
                                         </div>
 
                                         <div class="form-group col-md-6 float-right">
                                             <label class="col-form-label col-4 float-left">Email:</label>
                                             <input type="email" class="form-control form-control-user col-8 float-right"
-                                                   id="email" aria-describedby="emailHelp"
-                                                   placeholder="örn. abc@abc.com">
+                                                   id="email" aria-describedby="emailHelp" name="Email" placeholder="örn. abc@abc.com"
+                                                   required >
+                                                   <span asp-validation-for="Email" class="text-danger float-right"></span>
                                         </div>
                                     </div>
 
@@ -60,19 +65,21 @@
                                         <div class="form-group col-md-6 float-left">
                                             <label class="col-form-label col-4 float-left">Telefon No:</label>
                                             <input type="text" class="form-control form-control-user col-8 float-right"
-                                                   id="phoneNumber" aria-describedby="phoneNumberHelp"
-                                                   placeholder="örn. 0537 651 25 89">
+                                                   id="phoneNumber" aria-describedby="phoneNumberHelp" name="PhoneNumber" placeholder="örn. 05376512589"
+                                                   required maxlength="11" minlength="11" >
+                                                   <span asp-validation-for="PhoneNumber" class="text-danger float-right"></span>
                                         </div>
 
                                         <div class="form-group col-md-6 float-right">
                                             <label class="col-form-label col-4 float-left">Daire Durumu:</label>
 
                                             <div class="col-8 float-right">
-                                                <select class="form-control custom-select" id="housingStatus">
-                                                    <option selected>Seçiniz...</option>
-                                                    <option value="1">Kiracı</option>
-                                                    <option value="2">Ev Sahibi</option>
+                                                <select class="form-control custom-select" id="housingStatus" name="HousingStatus" required >
+                                                    <option value="false" selected>Seçiniz...</option>
+                                                    <option value="false">Kiracı</option>
+                                                    <option value="true">Ev Sahibi</option>
                                                 </select>
+                                                <span asp-validation-for="HousingStatus" class="text-danger float-right"></span>
                                             </div>
                                         </div>
                                     </div>
@@ -85,11 +92,12 @@
                                             <label class="col-form-label col-4 float-left">Kullanıcı Durumu:</label>
 
                                             <div class="col-8 float-right">
-                                                <select class="form-control custom-select" id="userStatus">
-                                                    <option selected>Seçiniz...</option>
-                                                    <option value="3">Pasif</option>
-                                                    <option value="4">Aktif</option>
+                                                <select class="form-control custom-select" id="status" name="Status" required >
+                                                    <option value="true" selected>Seçiniz...</option>
+                                                    <option value="false">Pasif</option>
+                                                    <option value="true">Aktif</option>
                                                 </select>
+                                                <span asp-validation-for="Status" class="text-danger float-right"></span>
                                             </div>
                                         </div>
 
@@ -97,11 +105,12 @@
                                             <label class="col-form-label col-4 float-left">Kullanıcı Rolü:</label>
 
                                             <div class="col-8 float-right">
-                                                <select class="form-control custom-select" id="userRole">
-                                                    <option selected>Seçiniz...</option>
-                                                    <option value="5">Kullanıcı</option>
-                                                    <option value="6">Yönetici</option>
+                                                <select class="form-control custom-select" id="userRole" name="UserRole" required >
+                                                    <option value="false" selected>Seçiniz...</option>
+                                                    <option value="false">Kullanıcı</option>
+                                                    <option value="true">Yönetici</option>
                                                 </select>
+                                                <span asp-validation-for="UserRole" class="text-danger float-right"></span>
                                             </div>
                                         </div>
                                     </div>
@@ -116,9 +125,14 @@
                                     <br />
                                     <br />
                                     <br />
-                                    <a asp-action="Index" asp-controller="UserAdmin" class="btn btn-primary btn-user btn-block " style="width: 250px;margin: 0 auto;font-size: medium;">
+                                    <br />
+                                    <br />
+                                    <br />
+                                    <br />
+                                    <br />
+                                    <button type="submit"  class="btn btn-primary btn-user btn-block " style="width: 250px;margin: 0 auto;font-size: medium;">
                                         Kaydet
-                                    </a>
+                                    </button>
                                 </form>
                             </div>
                         </div>

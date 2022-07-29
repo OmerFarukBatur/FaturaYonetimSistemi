@@ -11,12 +11,7 @@ using DataAccessLayer.Repositories.User;
 using DataAccessLayer.Repositories.Vehicle;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Configuration;
+using MediatR;
 
 namespace BusinessLayer
 {
@@ -24,6 +19,8 @@ namespace BusinessLayer
     {
         public static void AddBusinessLayerServices(this IServiceCollection services)
         {
+            services.AddMediatR(typeof(ServiceRegistration));
+
             //Configuration.ConfigurationString
             services.AddDbContext<FAYonetimiDBContext>(options => options.UseNpgsql(Configuration.ConfigurationString));
 
