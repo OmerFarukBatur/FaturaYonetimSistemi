@@ -1,20 +1,20 @@
-﻿using FluentValidation;
-using BusinessLayer.Features.Commands.AdminUser.CreateUser;
+﻿using BusinessLayer.Features.Commands.AdminUser.UpdateUser;
+using FluentValidation;
 
 namespace BusinessLayer.ValidationRules.UserAdmin
 {
-    public class UserCreateValidation : AbstractValidator<CreateUserAdminCommandRequest>
+    public class UserUpdateValidation : AbstractValidator<UpdateUserCommandRequest>
     {
-        public UserCreateValidation()
+        public UserUpdateValidation()
         {
             RuleFor(u => u.FirstName)
-                .NotEmpty()
-                .WithMessage("Lütfen adınızı giriniz...")
-                .NotNull()
-                .WithMessage("Lütfen adınızı giriniz...")
-                .MaximumLength(30)
-                .MinimumLength(2)
-                .WithMessage("Lütfen girmiş olduğunuz isim 30 ile 2 karakter arasında olmalıdır.");
+               .NotEmpty()
+               .WithMessage("Lütfen adınızı giriniz...")
+               .NotNull()
+               .WithMessage("Lütfen adınızı giriniz...")
+               .MaximumLength(30)
+               .MinimumLength(2)
+               .WithMessage("Lütfen girmiş olduğunuz isim 30 ile 2 karakter arasında olmalıdır.");
 
             RuleFor(u => u.LastName).NotEmpty()
                 .WithMessage("Lütfen soyadınızı giriniz...")
@@ -37,7 +37,7 @@ namespace BusinessLayer.ValidationRules.UserAdmin
                 .WithMessage("Lütfen telefon numaranızı giriniz...")
                 .Length(11)
                 .WithMessage("Lütfen 11 karaktere sahip geçerli bir telefon numarası giriniz.");
-            
+
             RuleFor(u => u.Status)
                 .Must(u => u == true || u == false)
                 .NotNull()
@@ -53,7 +53,7 @@ namespace BusinessLayer.ValidationRules.UserAdmin
             RuleFor(u => u.UserRole)
                 .Must(u => u == true || u == false)
                 .NotNull()
-                .WithMessage("Lütfen bir rol seçiniz...");            
+                .WithMessage("Lütfen bir rol seçiniz...");
 
             RuleFor(u => u.HousingStatus)
                 .Must(u => u == true || u == false)

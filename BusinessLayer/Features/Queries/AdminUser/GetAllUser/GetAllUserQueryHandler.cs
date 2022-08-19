@@ -1,4 +1,6 @@
-﻿using MediatR;
+﻿using DataAccessLayer.Repositories.User;
+using MediatR;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,9 +12,21 @@ namespace BusinessLayer.Features.Queries.AdminUser.GetAllUser
 {
     public class GetAllUserQueryHandler : IRequestHandler<GetAllUserQueryRequest, GetAllUserQueryResponse>
     {
-        public Task<GetAllUserQueryResponse> Handle(GetAllUserQueryRequest request, CancellationToken cancellationToken)
+        private readonly IUserReadRepository _userReadRepository;
+
+        public GetAllUserQueryHandler(IUserReadRepository userReadRepository)
         {
-            throw new NotImplementedException();
+            _userReadRepository = userReadRepository;
+        }
+
+        public async Task<GetAllUserQueryResponse> Handle(GetAllUserQueryRequest request, CancellationToken cancellationToken)
+        {
+            var user = await _userReadRepository.GetAll(false).ToListAsync();
+
+            return new()
+            {
+                Users = user
+            };
         }
     }
 }

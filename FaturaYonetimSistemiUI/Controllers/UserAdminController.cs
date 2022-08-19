@@ -1,10 +1,13 @@
 ﻿using BusinessLayer.ValidationRules.UserAdmin;
 using BusinessLayer.Features.Commands.AdminUser.CreateUser;
-using FluentValidation;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 using FluentValidation.Results;
+using BusinessLayer.Features.Queries.AdminUser.GetAllUser;
+using BusinessLayer.Features.Commands.AdminUser.UpdateUser;
+using BusinessLayer.Features.Queries.AdminUser.GetByIdUser;
+using BusinessLayer.Features.Commands.AdminUser.RemoveUser;
 
 namespace FaturaYonetimSistemiUI.Controllers
 {
@@ -17,16 +20,21 @@ namespace FaturaYonetimSistemiUI.Controllers
             _mediator = mediator;
         }
 
-        public IActionResult Index()
+        [HttpGet]
+        public async Task<IActionResult> Index(GetAllUserQueryRequest getAllUserQueryRequest)
         {
-
-            return View();
+            GetAllUserQueryResponse response = await _mediator.Send(getAllUserQueryRequest);
+            return View(response);
         }
+
+
         [HttpGet]
         public IActionResult NewUser()
         {
             return View();
         }
+
+
         [HttpPost]
         public async Task<IActionResult> NewUser(CreateUserAdminCommandRequest request)
         {
@@ -44,19 +52,45 @@ namespace FaturaYonetimSistemiUI.Controllers
                 {
                     ModelState.AddModelError(error.PropertyName, error.ErrorMessage);
                 }
+                return View();
             }
-
             
-            return View();
-        }
-        public IActionResult UpdateUser()
-        {
-            return View();
+            
         }
 
-        public IActionResult DeleteUser()
+        [HttpGet]
+        public async Task<IActionResult> UpdateUser(GetByIdUserQueryRequest getByIdUserQueryRequest)
         {
-            return View();
+            GetByIdUserQueryResponse response = await _mediator.Send(getByIdUserQueryRequest);
+            return View(response);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> UpdateUser(UpdateUserCommandRequest updateUserCommandRequest)
+        {
+            UserUpdateValidation validations = new UserUpdateValidation();
+            ValidationResult result = validations.Validate(updateUserCommandRequest);
+
+            if (result.IsValid)
+            {
+                UpdateUserCommandResponse response = await _mediator.Send(updateUserCommandRequest);
+                return RedirectToAction("Index", "UserAdmin");
+            }
+            else
+            {
+                foreach (var item in result.Errors)
+                {
+                    ModelState.AddModelError(item.PropertyName, item.ErrorMessage);
+                }
+                return RedirectToAction("UpdateUser",updateUserCommandRequest.Id.ToString());
+            }       
+            
+        }
+
+        public async Task<IActionResult> DeleteUser(RemoveUserCommandRequest removeUserCommandRequest)
+        {
+            RemoveUserCommandResponse response = await _mediator.Send(removeUserCommandRequest);
+            return RedirectToAction("Index", "UserAdmin");
         }
     }
 }

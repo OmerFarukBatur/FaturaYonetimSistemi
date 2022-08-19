@@ -45,6 +45,7 @@
                     <tbody>
                         @for (var i = 0; i < 12; i++)
                         {
+                            Guid guid = new Guid();
                             <tr>
                                 <td>Tiger Nixon</td>
                                 <td>11111111111</td>
@@ -56,7 +57,7 @@
                                 <td>01/06/2022</td>
                                 <td>01/07/2022</td>
                                 <td >
-                                    <a class="btn btn-warning" style="color:black;" asp-action="UpdateUser" asp-controller="UserAdmin"><i class="fa fa-pencil-alt" aria-hidden="true"></i></a>                                    
+                                    <a class="btn btn-warning" style="color:black;" asp-action="UpdateUser" asp-controller="UserAdmin" asp-route-id = "@guid"><i class="fa fa-pencil-alt" aria-hidden="true"></i></a>                                    
                                 </td>
                                 <td>
                                     <a class="btn btn-danger" style="color:whitesmoke;" asp-action="DeleteUser" asp-controller="UserAdmin" ><i class="fa fa-trash" aria-hidden="true"></i></a>
