@@ -18,7 +18,7 @@ namespace BusinessLayer
                 // bu kısımda dosya yolu uzantısı hatası var
                 configurationManager.AddJsonFile("appsettings.json");
 
-                return configurationManager.GetConnectionString("PostgreSQL");
+                return configurationManager.GetConnectionString("MSSQL");
             }
         }
     }

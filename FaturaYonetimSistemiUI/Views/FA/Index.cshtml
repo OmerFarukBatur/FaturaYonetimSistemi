@@ -45,23 +45,28 @@
                         </tr>
                     </tfoot>
                     <tbody>
-                        @for (var i = 0; i < 12; i++)
+                        @foreach (var item in @Model)                      
                         {
                             <tr>
-                                <td>Tiger Nixon</td>
-                                <td>D6</td>
-                                <td>15</td>
-                                <td>Elektrik</td>
-                                <td>250</td>
-                                <td>Aktif</td>
-                                <td>01/08/2022</td>
-                                <td>01/06/2022</td>
-                                <td>01/07/2022</td>
+                                <td>@item.FirstName @item.LastName</td>
+                                <td>@item.BlockNumber</td>
+                                <td>@item.HousNumber</td>
+                                <td>@item.FAType</td>
+                                <td>@item.Amount</td>
+                                @if (@item.Status)
+                                {
+                                    <td>Aktif</td>
+                                }else{
+                                    <td>Pasif</td>
+                                }
+                                <td>@item.DueDate</td>
+                                <td>@item.CreatedDate</td>
+                                <td>@item.UpdatedDate</td>
                                 <td >
-                                    <a class="btn btn-warning" style="color:black;" asp-action="UpdateFA" asp-controller="FA"><i class="fa fa-pencil-alt" aria-hidden="true"></i></a>                                    
+                                    <a class="btn btn-warning" style="color:black;" asp-action="UpdateFA" asp-controller="FA" asp-route-id = "@item.id"><i class="fa fa-pencil-alt" aria-hidden="true"></i></a>                                    
                                 </td>
                                 <td>
-                                    <a class="btn btn-danger" style="color:whitesmoke;" asp-action="DeleteFA" asp-controller="FA" ><i class="fa fa-trash" aria-hidden="true"></i></a>
+                                    <a class="btn btn-danger" style="color:whitesmoke;" asp-action="DeleteFA" asp-controller="FA" asp-route-id = "@item.id" ><i class="fa fa-trash" aria-hidden="true"></i></a>
                                 </td>
                             </tr>
                         }

@@ -1,5 +1,8 @@
-﻿using DataAccessLayer.Repositories.User;
+﻿using BusinessLayer.Services.NotificationMessage;
+using BusinessLayer.Services.PasswordEncrypt;
+using DataAccessLayer.Repositories.User;
 using MediatR;
+using Microsoft.Extensions.Configuration;
 using System;
 using System.Threading;
 using System.Threading.Tasks;
@@ -9,13 +12,17 @@ namespace BusinessLayer.Features.Commands.AdminUser.CreateUser
     public class CreateUserAdminCommandHandler : IRequestHandler<CreateUserAdminCommandRequest, CreateUserAdminCommandResponse>
     {
         private readonly IUserWriteRepository _userWriteRepository;
-        public CreateUserAdminCommandHandler(IUserWriteRepository userWriteRepository)
+        private readonly IConfiguration _config;
+        public CreateUserAdminCommandHandler(IUserWriteRepository userWriteRepository, IConfiguration config)
         {
             _userWriteRepository = userWriteRepository;
+            _config = config;
         }
 
         public async Task<CreateUserAdminCommandResponse> Handle(CreateUserAdminCommandRequest request, CancellationToken cancellationToken)
         {
+
+            string password = PasswordCreate();
 
             await _userWriteRepository.AddAsync(new()
             {
@@ -27,10 +34,13 @@ namespace BusinessLayer.Features.Commands.AdminUser.CreateUser
                 HousingStatus = request.HousingStatus,
                 UserRole = request.UserRole,
                 Status = request.Status,
-                Password = PasswordCreate()
+                PasswordHash = PasswordHash.PasswordHashCreate(password)
             });
 
             await _userWriteRepository.SaveAsync();
+            request.PasswordHash = password;
+            EmailSender emailSender = new EmailSender();
+            emailSender.Sender(request,_config);
             return new();
         }
 

@@ -24,7 +24,7 @@ namespace FaturaYonetimSistemiUI.Controllers
         public async Task<IActionResult> Index(GetAllUserQueryRequest getAllUserQueryRequest)
         {
             GetAllUserQueryResponse response = await _mediator.Send(getAllUserQueryRequest);
-            return View(response);
+            return View(response.Users);
         }
 
 
@@ -62,7 +62,7 @@ namespace FaturaYonetimSistemiUI.Controllers
         public async Task<IActionResult> UpdateUser(GetByIdUserQueryRequest getByIdUserQueryRequest)
         {
             GetByIdUserQueryResponse response = await _mediator.Send(getByIdUserQueryRequest);
-            return View(response);
+            return View(response.User);
         }
 
         [HttpPost]
@@ -82,7 +82,7 @@ namespace FaturaYonetimSistemiUI.Controllers
                 {
                     ModelState.AddModelError(item.PropertyName, item.ErrorMessage);
                 }
-                return RedirectToAction("UpdateUser",updateUserCommandRequest.Id.ToString());
+                return RedirectToAction("UpdateUser","UserAdmin",updateUserCommandRequest.Id.ToString());
             }       
             
         }

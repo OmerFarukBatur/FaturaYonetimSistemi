@@ -43,24 +43,38 @@
                         </tr>
                     </tfoot>
                     <tbody>
-                        @for (var i = 0; i < 12; i++)
-                        {
-                            Guid guid = new Guid();
+                        @foreach (var item in @Model)
+                        {                           
                             <tr>
-                                <td>Tiger Nixon</td>
-                                <td>11111111111</td>
-                                <td>abc@abc.com</td>
-                                <td>0534 780 32 15</td>
-                                <td>Kiracı</td>
-                                <td>Aktif</td>
-                                <td>Admin</td>
-                                <td>01/06/2022</td>
-                                <td>01/07/2022</td>
+                                <td>@item.FirstName @item.LastName</td>
+                                <td>@item.TCNumber</td>
+                                <td>@item.Email</td>
+                                <td>@item.PhoneNumber</td>
+                                @if (@item.HousingStatus)
+                                {
+                                    <td>Ev Sahibi</td>
+                                }else{
+                                    <td>Kiracı</td>
+                                }
+                                @if (@item.Status)
+                                {
+                                    <td>Aktif</td>
+                                }else{
+                                    <td>Pasif</td>
+                                }
+                                @if (@item.UserRole)
+                                {
+                                    <td>Admin</td>
+                                }else{
+                                    <td>Kullanıcı</td>
+                                }                                
+                                <td>@item.CreatedDate</td>
+                                <td>@item.UpdatedDate</td>
                                 <td >
-                                    <a class="btn btn-warning" style="color:black;" asp-action="UpdateUser" asp-controller="UserAdmin" asp-route-id = "@guid"><i class="fa fa-pencil-alt" aria-hidden="true"></i></a>                                    
+                                    <a class="btn btn-warning" style="color:black;" asp-action="UpdateUser" asp-controller="UserAdmin" asp-route-id = "@item.id"><i class="fa fa-pencil-alt" aria-hidden="true"></i></a>                                    
                                 </td>
                                 <td>
-                                    <a class="btn btn-danger" style="color:whitesmoke;" asp-action="DeleteUser" asp-controller="UserAdmin" ><i class="fa fa-trash" aria-hidden="true"></i></a>
+                                    <a class="btn btn-danger" style="color:whitesmoke;" asp-action="DeleteUser" asp-controller="UserAdmin" asp-route-id = "@item.id" ><i class="fa fa-trash" aria-hidden="true"></i></a>
                                 </td>
                             </tr>
                         }

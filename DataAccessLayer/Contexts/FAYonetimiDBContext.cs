@@ -2,9 +2,6 @@
 using EntityLayer.Entities.Common;
 using Microsoft.EntityFrameworkCore;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -12,10 +9,10 @@ namespace DataAccessLayer.Contexts
 {
     public class FAYonetimiDBContext : DbContext
     {
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            optionsBuilder.UseNpgsql("User ID=postgres;Password=admin;Host=localhost;Port=5432;Database=FaturaYonetimi;Pooling=true;");
-        }
+        //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        //{
+        //    optionsBuilder.UseSqlServer("Server=DESKTOP-K2S3CST;Database=FaturaYonetimi;integrated security=true;");
+        //}
 
         public FAYonetimiDBContext(DbContextOptions options) : base(options)
         { }

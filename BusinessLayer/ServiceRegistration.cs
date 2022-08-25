@@ -22,7 +22,8 @@ namespace BusinessLayer
             services.AddMediatR(typeof(ServiceRegistration));
 
             //Configuration.ConfigurationString
-            services.AddDbContext<FAYonetimiDBContext>(options => options.UseNpgsql(Configuration.ConfigurationString));
+            services.AddDbContext<FAYonetimiDBContext>(options => options.UseSqlServer(Configuration.ConfigurationString));
+            //services.AddDbContext<FAYonetimiDBContext>(options => options.UseNpgsql("User ID=postgres;Password=admin;Host=localhost;Port=5432;Database=FaturaYonetimi;Pooling=true;"));
 
             services.AddScoped<IContactReadRepository, ContactReadRepository>();
             services.AddScoped<IContactWriteRepository, ContactWriteRepository>();
