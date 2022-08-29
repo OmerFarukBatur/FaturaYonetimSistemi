@@ -1,6 +1,9 @@
 ﻿using BusinessLayer.Features.Commands.FA.CreateFA;
+using BusinessLayer.Features.Commands.FA.RemoveFA;
+using BusinessLayer.Features.Commands.FA.UpdateFA;
 using BusinessLayer.Features.Queries.FA.GetAllFA;
 using BusinessLayer.Features.Queries.FA.GetAllUserFA;
+using BusinessLayer.Features.Queries.FA.GetByIdFA;
 using BusinessLayer.ValidationRules.FA;
 using FluentValidation;
 using FluentValidation.Results;
@@ -53,13 +56,23 @@ namespace FaturaYonetimSistemiUI.Controllers
             }            
             
         }
-        public IActionResult UpdateFA()
+        [HttpGet]
+        public async Task<IActionResult> UpdateFA(GetByIdFAQueryRequest getByIdFAQueryRequest)
         {
-            return View();
+            GetByIdFAQueryResponse response = await _mediator.Send(getByIdFAQueryRequest);
+            return View(response);
         }
-        public IActionResult DeleteFA()
+
+        [HttpPost]
+        public async Task<IActionResult> UpdateFA(UpdateFACommandRequest updateFACommandRequest)
         {
-            return View();
+            UpdateFACommandResponse response = await _mediator.Send(updateFACommandRequest);
+            return RedirectToAction("Index", "FA");
+        }
+        public async Task<IActionResult> DeleteFA(RemoveFACommandRequest removeFACommandRequest)
+        {
+            RemoveFACommandResponse response = await _mediator.Send(removeFACommandRequest);
+            return RedirectToAction("Index", "FA");
         }
     }
 }

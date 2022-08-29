@@ -1,5 +1,4 @@
-﻿
-@{
+﻿@{
     ViewData["Title"] = "UpdateFA";
 }
 
@@ -18,7 +17,7 @@
                                     <h1 class="h4 text-gray-900 mb-4">Fatura Kayıt Güncelleme Formu</h1>
                                 </div>
 
-                                <form class="user">
+                                <form class="user" method="post">
 
                                     <div class="form-group col-12">
 
@@ -27,12 +26,12 @@
                                             <label class="col-form-label col-4 float-left">Fatura Tipi:</label>
 
                                             <div class="col-8 float-right">
-                                                <select class="form-control custom-select" id="FAType">
-                                                    <option selected>Seçiniz...</option>
-                                                    <option value="3">Elektrik</option>
-                                                    <option value="4">Su</option>
-                                                    <option value="4">Doğalgaz</option>
-                                                    <option value="4">Aidat</option>
+                                                <select class="form-control custom-select" id="FAType" name="FAType" required>
+                                                    <option value="@Model.FA.FAType" selected>Seçiniz...</option>
+                                                    <option value="Elektrik">Elektrik</option>
+                                                    <option value="Su">Su</option>
+                                                    <option value="Doğalgaz">Doğalgaz</option>
+                                                    <option value="Aidat">Aidat</option>
                                                 </select>
                                             </div>
                                         </div>
@@ -41,11 +40,15 @@
                                             <label class="col-form-label col-4 float-left">Kullanıcı:</label>
 
                                             <div class="col-8 float-left">
-                                                <select class="form-control custom-select" id="userId">
-                                                    <option selected>Seçiniz...</option>
-                                                    <option value="1">Kaan Baş</option>
+                                                <select class="form-control custom-select" id="userId" name="UserId">
+                                                    <option selected value="@Model.FA.UserId">Seçiniz...</option>
+                                                    @foreach (var item in @Model.Users)
+                                                   {
+                                                        <option value="@item.id">@item.FirstName @item.LastName</option>
+                                                    }
+                                                    @*<option value="1">Kaan Baş</option>
                                                     <option value="2">Deniz Toprak</option>
-                                                    <option value="2">Anıl Demir</option>
+                                                    <option value="2">Anıl Demir</option>*@
                                                 </select>
                                             </div>
                                         </div>
@@ -58,18 +61,18 @@
                                         <div class="form-group col-md-6 float-left">
                                             <label class="col-form-label col-4 float-left">Fatura Tutarı:</label>
                                             <input type="number" class="form-control form-control-user col-8 float-right"
-                                                   id="Amount" aria-describedby="AmountHelp"
-                                                   placeholder="örn. 250">
+                                                   id="Amount" aria-describedby="AmountHelp" name="Amount"
+                                                   placeholder="örn. 250" value="@Model.FA.Amount">
                                         </div>
 
                                         <div class="form-group col-md-6 float-right">
                                             <label class="col-form-label col-4 float-left">Fatura Durumu:</label>
 
                                             <div class="col-8 float-right">
-                                                <select class="form-control custom-select" id="faStatus">
-                                                    <option selected>Seçiniz...</option>
-                                                    <option value="3">Pasif</option>
-                                                    <option value="4">Aktif</option>
+                                                <select class="form-control custom-select" id="faStatus" name="Status">
+                                                    <option value="@Model.FA.Status" selected>Seçiniz...</option>
+                                                    <option value="False">Pasif</option>
+                                                    <option value="True">Aktif</option>
                                                 </select>
                                             </div>
                                         </div>
@@ -80,11 +83,11 @@
 
                                     <div class="form-group col-12" data-provide="datepicker" >
                                         <div class="form-group col-md-6 float-left">
-                                            <label class="col-form-label col-4 float-left">Telefon No:</label>
+                                            <label class="col-form-label col-4 float-left">Son Ödeme Tarihi:</label>
 
                                             <div class="form-group col-md-6 float-left " id="datepicker">
                                                 <div class="input-group date">
-                                                    <input type="text" value="05/16/2018" class="form-control form-control col-8 float-right" required />
+                                                    <input type="text" value="@Model.FA.DueDate" class="form-control form-control col-8 float-right" name="DueDate" required />
                                                     <div class="input-group-addon input-group-append">
                                                         <div class="input-group-text">
                                                             <i class="glyphicon glyphicon-calendar fa fa-calendar"></i>
@@ -106,9 +109,9 @@
                                     <br />
                                     <br />
                                     <br />
-                                    <a asp-action="Index" asp-controller="FA" class="btn btn-primary btn-user btn-block " style="width: 250px;margin: 0 auto;font-size: medium;">
+                                    <button type="submit" class="btn btn-primary btn-user btn-block " style="width: 250px;margin: 0 auto;font-size: medium;">
                                         Kaydet
-                                    </a>
+                                    </button>
                                 </form>
                             </div>
                         </div>
