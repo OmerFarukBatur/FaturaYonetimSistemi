@@ -66,8 +66,22 @@ namespace FaturaYonetimSistemiUI.Controllers
         [HttpPost]
         public async Task<IActionResult> UpdateFA(UpdateFACommandRequest updateFACommandRequest)
         {
-            UpdateFACommandResponse response = await _mediator.Send(updateFACommandRequest);
-            return RedirectToAction("Index", "FA");
+            FAUpdateValidation validations = new FAUpdateValidation();
+            ValidationResult result = validations.Validate(updateFACommandRequest);
+
+            if (result.IsValid)
+            {
+                UpdateFACommandResponse response = await _mediator.Send(updateFACommandRequest);
+                return RedirectToAction("Index", "FA");
+            }
+            else
+            {
+                foreach (var item in result.Errors)
+                {
+                    ModelState.AddModelError(item.PropertyName, item.ErrorMessage);
+                }
+                return RedirectToAction("UpdateFA", "FA",updateFACommandRequest.Id.ToString());
+            }            
         }
         public async Task<IActionResult> DeleteFA(RemoveFACommandRequest removeFACommandRequest)
         {

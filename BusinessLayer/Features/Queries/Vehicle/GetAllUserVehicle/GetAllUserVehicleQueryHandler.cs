@@ -8,23 +8,20 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace BusinessLayer.Features.Queries.FA.GetAllUserFA
+namespace BusinessLayer.Features.Queries.Vehicle.GetAllUserVehicle
 {
-    public class GetAllUserFAQueryHandler : IRequestHandler<GetAllUserFAQueryRequest, GetAllUserFAQueryResponse>
+    public class GetAllUserVehicleQueryHandler : IRequestHandler<GetAllUserVehicleQueryRequest, GetAllUserVehicleQueryResponse>
     {
         private readonly IUserReadRepository _userReadRepository;
 
-        public GetAllUserFAQueryHandler(IUserReadRepository userReadRepository)
+        public GetAllUserVehicleQueryHandler(IUserReadRepository userReadRepository)
         {
             _userReadRepository = userReadRepository;
         }
 
-        public async Task<GetAllUserFAQueryResponse> Handle(GetAllUserFAQueryRequest request, CancellationToken cancellationToken)
+        public async Task<GetAllUserVehicleQueryResponse> Handle(GetAllUserVehicleQueryRequest request, CancellationToken cancellationToken)
         {
-            
-
             var users = await _userReadRepository.GetAll(false).ToListAsync();
-
 
             return new()
             {

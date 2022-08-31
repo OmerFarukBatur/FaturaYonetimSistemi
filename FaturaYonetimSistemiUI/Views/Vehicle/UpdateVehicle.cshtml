@@ -18,7 +18,7 @@
                                     <h1 class="h4 text-gray-900 mb-4">Araç Kayıt Düzenleme Formu</h1>
                                 </div>
 
-                                <form class="user">
+                                <form class="user" method="post">
 
                                     <div class="form-group col-12">
 
@@ -26,11 +26,12 @@
                                             <label class="col-form-label col-4 float-left">Kullanıcı:</label>
 
                                             <div class="col-8 float-left">
-                                                <select class="form-control custom-select" id="userId">
-                                                    <option selected>Seçiniz...</option>
-                                                    <option value="1">Kaan Baş</option>
-                                                    <option value="2">Deniz Toprak</option>
-                                                    <option value="2">Anıl Demir</option>
+                                                <select class="form-control custom-select" id="userId" name="UserId">
+                                                    <option value="@Model.Vehicle.UserId" selected>Seçiniz...</option>
+                                                    @foreach (var item in @Model.Users)
+                                                    {
+                                                        <option value="@item.id">@item.FirstName @item.LastName</option>
+                                                    }
                                                 </select>
                                             </div>
                                         </div>
@@ -38,8 +39,8 @@
                                         <div class="form-group col-md-6 float-right">
                                             <label class="col-form-label col-4 float-left">Araç Plakası:</label>
                                             <input type="text" class="form-control form-control-user col-8 float-right"
-                                                   id="PlateNumber" aria-describedby="PlateNumberHelp"
-                                                   placeholder="örn. 34 KP 1025">
+                                                   id="PlateNumber" aria-describedby="PlateNumberHelp" name="PlateNumber"
+                                                   placeholder="örn. 34 KP 1025" value="@Model.Vehicle.PlateNumber">
                                         </div>                                       
 
                                     </div>
@@ -51,12 +52,12 @@
                                             <label class="col-form-label col-4 float-left">Araç Tipi:</label>
 
                                             <div class="col-8 float-left">
-                                                <select class="form-control custom-select" id="VehicleType">
-                                                    <option selected>Seçiniz...</option>
-                                                    <option value="3">Sedan</option>
-                                                    <option value="4">Pick up</option>
-                                                    <option value="5">Hatchback</option>
-                                                    <option value="6">SUV</option>
+                                                <select class="form-control custom-select" id="VehicleType" name="VehicleType">
+                                                    <option value="@Model.Vehicle.VehicleType" selected>Seçiniz...</option>
+                                                    <option value="Sedan">Sedan</option>
+                                                    <option value="Pick up">Pick up</option>
+                                                    <option value="Hatchback">Hatchback</option>
+                                                    <option value="SUV">SUV</option>
                                                 </select>
                                             </div>
                                         </div>
@@ -65,10 +66,10 @@
                                             <label class="col-form-label col-4 float-left">Araç Durumu:</label>
 
                                             <div class="col-8 float-right">
-                                                <select class="form-control custom-select" id="vehicleStatus">
-                                                    <option selected>Seçiniz...</option>
-                                                    <option value="3">Pasif</option>
-                                                    <option value="4">Aktif</option>
+                                                <select class="form-control custom-select" id="vehicleStatus" name="Status">
+                                                    <option value="@Model.Vehicle.Status" selected>Seçiniz...</option>
+                                                    <option value="False">Pasif</option>
+                                                    <option value="True">Aktif</option>
                                                 </select>
                                             </div>
                                         </div>                                       
@@ -86,9 +87,9 @@
                                     <br />
                                     <br />
                                     <br />
-                                    <a asp-action="Index" asp-controller="Vehicle" class="btn btn-primary btn-user btn-block " style="width: 250px;margin: 0 auto;font-size: medium;">
+                                    <button type="submit"  class="btn btn-primary btn-user btn-block " style="width: 250px;margin: 0 auto;font-size: medium;">
                                         Kaydet
-                                    </a>
+                                    </button>
                                 </form>
                             </div>
                         </div>

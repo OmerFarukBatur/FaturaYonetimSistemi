@@ -43,12 +43,9 @@
                                                 <select class="form-control custom-select" id="userId" name="UserId">
                                                     <option selected value="@Model.FA.UserId">Seçiniz...</option>
                                                     @foreach (var item in @Model.Users)
-                                                   {
+                                                    {
                                                         <option value="@item.id">@item.FirstName @item.LastName</option>
                                                     }
-                                                    @*<option value="1">Kaan Baş</option>
-                                                    <option value="2">Deniz Toprak</option>
-                                                    <option value="2">Anıl Demir</option>*@
                                                 </select>
                                             </div>
                                         </div>
@@ -81,7 +78,7 @@
 
 
 
-                                    <div class="form-group col-12" data-provide="datepicker" >
+                                    <div class="form-group col-12" data-provide="datepicker">
                                         <div class="form-group col-md-6 float-left">
                                             <label class="col-form-label col-4 float-left">Son Ödeme Tarihi:</label>
 

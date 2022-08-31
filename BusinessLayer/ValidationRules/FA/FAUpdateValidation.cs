@@ -1,4 +1,4 @@
-﻿using BusinessLayer.Features.Commands.FA.CreateFA;
+﻿using BusinessLayer.Features.Commands.FA.UpdateFA;
 using FluentValidation;
 using System;
 using System.Collections.Generic;
@@ -8,9 +8,9 @@ using System.Threading.Tasks;
 
 namespace BusinessLayer.ValidationRules.FA
 {
-    public class FACreateValidation : AbstractValidator<CreateFACommandRequest>
+    public class FAUpdateValidation : AbstractValidator<UpdateFACommandRequest>
     {
-        public FACreateValidation()
+        public FAUpdateValidation()
         {
             RuleFor(fa => fa.UserId)
                 .NotEmpty()
@@ -37,7 +37,7 @@ namespace BusinessLayer.ValidationRules.FA
 
             RuleFor(fa => fa.Status)
                 .Must(fa => fa == true || fa == false)
-                .NotNull()                
+                .NotNull()
                 .WithMessage("Lütfen bir durum seçiniz..");
         }
     }

@@ -59,8 +59,10 @@ namespace BusinessLayer.Features.Queries.FA.GetAllFA
 
 
             // Aşağıdaki ile aynı çıktıyı vermekte fakat tek seferde tek sorgu ile veriler çekilmektedir.
-            var fanew = await _userReadRepository.GetAll(false).Join(_housingReadRepository.GetAll(false), user => user.id, house => house.UserId,
-                (u, h) => new { u,h }).Join(_faReadRepository.GetAll(false),us => us.u.id,f => f.UserId,(use,fa) => new {use,fa}).Select(a => new VM_CreateFA
+            var fanew = await _userReadRepository.GetAll(false)
+                .Join(_housingReadRepository.GetAll(false), user => user.id, house => house.UserId,(u, h) => new { u,h })
+                .Join(_faReadRepository.GetAll(false),us => us.u.id,f => f.UserId,(use,fa) => new {use,fa})
+                .Select(a => new VM_CreateFA
                 {
                     FirstName = a.use.u.FirstName,
                     LastName = a.use.u.LastName,
