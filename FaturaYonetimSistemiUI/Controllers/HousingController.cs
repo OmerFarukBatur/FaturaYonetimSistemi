@@ -1,24 +1,89 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using BusinessLayer.Features.Commands.Housing.CreateHousing;
+using BusinessLayer.Features.Commands.Housing.RemoveHousing;
+using BusinessLayer.Features.Commands.Housing.UpdateHousing;
+using BusinessLayer.Features.Queries.Housing.GetAllHousing;
+using BusinessLayer.Features.Queries.Housing.GetAllUserHousing;
+using BusinessLayer.Features.Queries.Housing.GetByIdHousing;
+using BusinessLayer.ValidationRules.Housing;
+using FluentValidation.Results;
+using MediatR;
+using Microsoft.AspNetCore.Mvc;
+using System.Threading.Tasks;
 
 namespace FaturaYonetimSistemiUI.Controllers
 {
     public class HousingController : Controller
     {
-        public IActionResult Index()
+        private readonly IMediator _mediator;
+
+        public HousingController(IMediator mediator)
         {
-            return View();
+            _mediator = mediator;
         }
-        public IActionResult NewHousing()
+
+        public async Task<IActionResult> Index(GetAllHousingQueryRequest getAllHousingQueryRequest)
         {
-            return View();
+            GetAllHousingQueryResponse response = await _mediator.Send(getAllHousingQueryRequest);
+            return View(response.AllHousing);
         }
-        public IActionResult UpdateHousing()
+
+        [HttpGet]
+        public async Task<IActionResult> NewHousing(GetAllUserHousingQueryRequest getAllUserHousingQueryRequest)
         {
-            return View();
+            GetAllUserHousingQueryResponse response = await _mediator.Send(getAllUserHousingQueryRequest);
+            return View(response.Users);
         }
-        public IActionResult DeleteHousing()
+        [HttpPost]
+        public async Task<IActionResult> NewHousing(CreateHousingCommandRequest createHousingCommandRequest)
         {
-            return View();
+            HousingCreateValidation validations = new HousingCreateValidation();
+            ValidationResult result = validations.Validate(createHousingCommandRequest);
+
+            if (result.IsValid)
+            {
+                CreateHousingCommandResponse response = await _mediator.Send(createHousingCommandRequest);
+                return RedirectToAction("Index", "Housing");
+            }
+            else
+            {
+                foreach (var item in result.Errors)
+                {
+                    ModelState.AddModelError(item.PropertyName, item.ErrorMessage);
+                }
+
+                return RedirectToAction("NewHousing", "Housing");
+            }            
+        }
+        [HttpGet]
+        public async Task<IActionResult> UpdateHousing(GetByIdHousingQueryRequest byIdHousingQueryRequest)
+        {
+            GetByIdHousingQueryResponse response = await _mediator.Send(byIdHousingQueryRequest);
+            return View(response);
+        }
+        [HttpPost]
+        public async Task<IActionResult> UpdateHousing(UpdateHousingCommandRequest updateHousingCommandRequest)
+        {
+            HousingUpdateValidation validations = new HousingUpdateValidation();
+            ValidationResult result = validations.Validate(updateHousingCommandRequest);
+
+            if (result.IsValid)
+            {
+                UpdateHousingCommandResponse response = await _mediator.Send(updateHousingCommandRequest);
+                return RedirectToAction("Index", "Housing");
+            }
+            else
+            {
+                foreach (var item in result.Errors)
+                {
+                    ModelState.AddModelError(item.PropertyName, item.ErrorMessage);                    
+                }
+                return RedirectToAction("UpdateHousing", "Housing");
+            }            
+        }
+        public async Task<IActionResult> DeleteHousing(RemoveHousingCommandRequest removeHousingCommandRequest)
+        {
+            RemoveHousingCommandResponse response = await _mediator.Send(removeHousingCommandRequest);
+            return RedirectToAction("Index", "Housing");
         }
     }
 }

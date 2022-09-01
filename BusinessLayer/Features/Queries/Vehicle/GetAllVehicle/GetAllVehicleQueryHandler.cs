@@ -31,7 +31,7 @@ namespace BusinessLayer.Features.Queries.Vehicle.GetAllVehicle
             var allVehicle = await _userReadRepository.GetAll(false)
                 .Join(_vehicleReadRepository.GetAll(false), user => user.id, vehicle => vehicle.UserId, (user, vehicle) => new { user, vehicle })
                 .Join(_housingReadRepository.GetAll(false), us => us.user.id, hous => hous.UserId, (us, hous) => new { us, hous })
-                .Select(s => new VM_GetAllVehicle
+                .Select(s => new VM_CreateVehicle
                 {
                     UserId = s.us.user.id.ToString(),
                     FirstName = s.us.user.FirstName,

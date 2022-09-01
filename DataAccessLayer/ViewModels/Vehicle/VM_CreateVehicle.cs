@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DataAccessLayer.ViewModels.Vehicle
 {
-    public class VM_GetAllVehicle
+    public class VM_CreateVehicle
     {
         public string UserId { get; set; }
         public string FirstName { get; set; }

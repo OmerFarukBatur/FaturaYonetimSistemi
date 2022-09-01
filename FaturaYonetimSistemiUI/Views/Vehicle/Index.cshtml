@@ -51,7 +51,14 @@
                                 <td>@item.HousNumber</td>
                                 <td>@item.PlateNumber</td>
                                 <td>@item.VehicleType</td>
-                                <td>@item.Status</td>
+                                @if (@item.Status)
+                                {
+                                    <td>Aktif</td>
+                                }
+                                else
+                                {
+                                    <td>Pasif</td>
+                                }
                                 <td>@item.CreatedDate</td>
                                 <td>@item.UpdatedDate</td>
                                 <td >

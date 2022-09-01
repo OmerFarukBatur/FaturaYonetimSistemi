@@ -18,30 +18,50 @@
                                     <h1 class="h4 text-gray-900 mb-4">Daire Kayıt Formu</h1>
                                 </div>
 
-                                <form class="user">
+                                <form class="user" method="post">
 
                                     <div class="form-group col-12">
 
-                                        <div class="form-group col-md-6 float-left">
+                                        <div class="form-group col-md-6 float-right">
                                             <label class="col-form-label col-4 float-left">Blok No:</label>
 
                                             <div class="col-8 float-right">
-                                                <select class="form-control custom-select" id="BlockNumber">
+                                                <select class="form-control custom-select" id="BlockNumber" name="BlockNumber">
                                                     <option selected>Seçiniz...</option>
-                                                    <option value="3">A1</option>
-                                                    <option value="4">A2</option>
-                                                    <option value="5">A3</option>
-                                                    <option value="6">B1</option>
+                                                    <option value="A1">A1</option>
+                                                    <option value="A2">A2</option>
+                                                    <option value="A3">A3</option>
+                                                    <option value="B1">B1</option>
+                                                    <option value="B2">B2</option>
+                                                    <option value="B3">B3</option>
+                                                    <option value="B4">B4</option>
+                                                    <option value="B5">B5</option>
+                                                    <option value="B6">B6</option>
+                                                    <option value="B7">B7</option>
+                                                    <option value="C1">C1</option>
+                                                    <option value="C2">C2</option>
+                                                    <option value="C3">C3</option>
                                                 </select>
                                             </div>
                                         </div>
 
-                                        <div class="form-group col-md-6 float-right">
-                                            <label class="col-form-label col-4 float-left">Kat No:</label>
-                                            <input type="number" class="form-control form-control-user col-8 float-right"
-                                                   id="FloorNumber" aria-describedby="FloorNumberHelp"
-                                                   placeholder="örn. 4">
-                                        </div>
+                                        <div class="form-group col-md-6 float-left">
+                                            <label class="col-form-label col-4 float-left">Kullanıcı:</label>
+
+                                            <div class="col-8 float-left">
+                                                <select class="form-control custom-select" id="userId" name="UserId">
+                                                    <option selected>Seçiniz...</option>
+                                                    @foreach (var item in @Model)
+                                                    {
+                                                        <option value="@item.id">@item.FirstName @item.LastName</option>
+                                                    }
+                                                    @*<option value="832179d8-5c1e-4ec7-f95c-08da843c834d">Kaan Baş</option>
+                                                    <option value="5983a496-df75-4f37-0869-08da84d710fa">Deniz Toprak</option>
+                                                    <option value="832179d8-5c1e-4ec7-f95c-08da843c838d">Anıl Demir</option>*@
+                                                </select>
+                                                @*<span asp-validation-for="FirstName" class="text-danger float-right" ></span>*@
+                                            </div>
+                                        </div>                                       
 
                                     </div>
 
@@ -52,12 +72,50 @@
                                             <label class="col-form-label col-4 float-left">Daire No:</label>
 
                                             <div class="col-8 float-right">
-                                                <select class="form-control custom-select" id="HousNumber">
+                                                <select class="form-control custom-select" id="HousNumber" name="HousNumber">
                                                     <option selected>Seçiniz...</option>
-                                                    <option value="3">1</option>
-                                                    <option value="4">2</option>
-                                                    <option value="5">3</option>
-                                                    <option value="6">4</option>
+                                                    @for (var i = 1; i < 53; i++)
+                                                   {
+                                                       <option value="@i">@i</option>
+                                                   }                                                   
+                                                    
+                                                </select>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group col-md-6 float-right">
+
+                                            <label class="col-form-label col-4 float-left">Kat No:</label>
+
+                                            <div class="col-8 float-right">
+                                                <select class="form-control custom-select" id="FloorNumber" name="FloorNumber">
+                                                    <option selected>Seçiniz...</option>
+                                                    @for (var i = 0; i < 12; i++)
+                                                    {
+                                                        <option value="@i">@i</option>
+                                                    }
+
+                                                </select>
+                                            </div>
+                                            @*<label class="col-form-label col-4 float-left">Kat No:</label>
+                                            <input type="number" class="form-control form-control-user col-8 float-right"
+                                                   id="FloorNumber" aria-describedby="FloorNumberHelp"
+                                                   placeholder="örn. 4" name="FloorNumber">*@
+                                        </div>                                        
+
+                                    </div>
+
+
+
+                                    <div class="form-group col-12" >
+                                        <div class="form-group col-md-6 float-left ">
+                                            <label class="col-form-label col-4 float-left">Daire Durumu:</label>
+
+                                            <div class="col-8 float-right">
+                                                <select class="form-control custom-select" id="housingStatus" name="Status">
+                                                    <option selected>Seçiniz...</option>
+                                                    <option value="False">Pasif</option>
+                                                    <option value="True">Aktif</option>
                                                 </select>
                                             </div>
                                         </div>
@@ -66,28 +124,11 @@
                                             <label class="col-form-label col-4 float-left">Daire Tipi:</label>
 
                                             <div class="col-8 float-right">
-                                                <select class="form-control custom-select" id="HousType">
+                                                <select class="form-control custom-select" id="HousType" name="HousType">
                                                     <option selected>Seçiniz...</option>
-                                                    <option value="3">1+1</option>
-                                                    <option value="4">2+1</option>
-                                                    <option value="5">3+1</option>
-                                                </select>
-                                            </div>
-                                        </div>
-
-                                    </div>
-
-
-
-                                    <div class="form-group col-12" >
-                                        <div class="form-group col-md-6 ">
-                                            <label class="col-form-label col-4 float-left">Daire Durumu:</label>
-
-                                            <div class="col-8 float-right">
-                                                <select class="form-control custom-select" id="housingStatus">
-                                                    <option selected>Seçiniz...</option>
-                                                    <option value="3">Pasif</option>
-                                                    <option value="4">Aktif</option>
+                                                    <option value="1+1">1+1</option>
+                                                    <option value="2+1">2+1</option>
+                                                    <option value="3+1">3+1</option>
                                                 </select>
                                             </div>
                                         </div>
@@ -103,9 +144,9 @@
                                     <br />
                                     <br />
                                     <br />
-                                    <a asp-action="Index" asp-controller="Housing" class="btn btn-primary btn-user btn-block " style="width: 250px;margin: 0 auto;font-size: medium;">
+                                    <button type="submit" class="btn btn-primary btn-user btn-block " style="width: 250px;margin: 0 auto;font-size: medium;">
                                         Kaydet
-                                    </a>
+                                    </button>
                                 </form>
                             </div>
                         </div>
