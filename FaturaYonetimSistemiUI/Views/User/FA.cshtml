@@ -1,0 +1,68 @@
+﻿
+@{
+    ViewData["Title"] = "FA";
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+}
+
+<!-- Begin Page Content -->
+<div class="container-fluid">
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h1 class="m-0 font-weight-bold text-primary" >Faturalar</h1>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th>Fatura Tipi</th>
+                            <th>Fatura Tutarı</th>
+                            <th>Fatura Durumu</th>
+                            <th>Son Ödeme Tarihi</th>
+                            <th>Kayıt Tarihi</th>
+                            <th>Güncellenme Tarihi</th>
+                            <th>Öde</th>
+                        </tr>
+                    </thead>
+                    <tfoot>
+                        <tr>
+                            <th>Fatura Tipi</th>
+                            <th>Fatura Tutarı</th>
+                            <th>Fatura Durumu</th>
+                            <th>Son Ödeme Tarihi</th>
+                            <th>Kayıt Tarihi</th>
+                            <th>Güncellenme Tarihi</th>
+                            <th>Öde</th>
+                        </tr>
+                    </tfoot>
+                    <tbody>
+                        @foreach (var item in @Model)
+                        {
+                            <tr>
+                                <td>@item.FAType</td>
+                                <td>@item.Amount</td>
+                                @if (@item.Status)
+                                {
+                                    <td>Aktif</td>
+                                }
+                                else
+                                {
+                                    <td>Pasif</td>
+                                }
+                                <td>@item.DueDate</td>
+                                <td>@item.CreatedDate</td>
+                                <td>@item.UpdatedDate</td>
+                                <td>
+                                    <a class="btn btn-warning" style="color:black;" @*asp-action="UpdateFA" asp-controller="FA" asp-route-id="@item.id"*@><i class="fa fa-pencil-alt" aria-hidden="true"></i></a>
+                                </td>
+                            </tr>
+                        }
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+</div>
+

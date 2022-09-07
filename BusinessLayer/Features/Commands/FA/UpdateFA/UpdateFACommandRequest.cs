@@ -12,7 +12,7 @@ namespace BusinessLayer.Features.Commands.FA.UpdateFA
         public string Id { get; set; }
         public string UserId { get; set; }
         public string FAType { get; set; }
-        public int Amount { get; set; }
+        public float Amount { get; set; }
         public DateTime DueDate { get; set; }
         public Boolean Status { get; set; }
     }

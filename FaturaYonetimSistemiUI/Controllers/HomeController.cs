@@ -28,7 +28,7 @@ namespace FaturaYonetimSistemiUI.Controllers
             }
             else if (userRole == "User")
             {
-                return RedirectToAction("Index", "Admin");
+                return RedirectToAction("Index", "User");
             }
             else
             {

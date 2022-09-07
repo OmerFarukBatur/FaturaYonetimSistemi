@@ -37,7 +37,6 @@ namespace BusinessLayer.ValidationRules.Housing
                .WithMessage("Lütfen bir daire tipi seçiniz..");
 
             RuleFor(h => h.FloorNumber)
-                .NotEmpty()
                .NotNull()
                .WithMessage("Lütfen bir kat numarası seçiniz..")
                .InclusiveBetween(0, 12);

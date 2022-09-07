@@ -19,13 +19,13 @@ namespace BusinessLayer.ValidationRules.Housing
                .WithMessage("Lütfen bir kullanıcı seçiniz..");
 
             RuleFor(h => h.BlockNumber)
-                .NotEmpty()
+               .NotEmpty()
                .NotNull()
                .NotEqual("Seçiniz...")
                .WithMessage("Lütfen bir blok seçiniz..");
 
             RuleFor(h => h.HousNumber)
-                .NotEmpty()
+               .NotEmpty()
                .NotNull()
                .WithMessage("Lütfen bir daire numarası seçiniz..")
                .InclusiveBetween(1,52);
@@ -37,7 +37,6 @@ namespace BusinessLayer.ValidationRules.Housing
                .WithMessage("Lütfen bir daire tipi seçiniz..");
 
             RuleFor(h => h.FloorNumber)
-                .NotEmpty()
                .NotNull()
                .WithMessage("Lütfen bir kat numarası seçiniz..")
                .InclusiveBetween(0, 12);

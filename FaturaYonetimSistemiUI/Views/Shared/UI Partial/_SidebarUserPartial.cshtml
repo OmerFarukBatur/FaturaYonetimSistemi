@@ -1,0 +1,66 @@
+﻿
+<ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+
+            <!-- Sidebar - Brand -->
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" asp-action="Index" asp-controller="User">
+                <div class="sidebar-brand-text mx-3">Fatura Yönetim Sistemi </div>
+            </a>
+
+            <!-- Divider -->
+            <hr class="sidebar-divider my-0">
+
+            <!-- Divider -->
+            <hr class="sidebar-divider">
+
+            <!-- Nav Item - Pages Collapse Menu -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseFA"
+                    aria-expanded="true" aria-controls="collapseFA">
+                    <span style="font-size:small; color:white;" class="sidebar-heading">Fatura İşlemleri</span>
+                </a>
+                <div id="collapseFA" class="collapse" aria-labelledby="headingFA" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <a class="collapse-item" asp-action="FA" asp-controller="User">Tüm Faturalar</a>
+
+                    </div>
+                </div>
+            </li>
+
+            <hr class="sidebar-divider">
+
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseVehicle"
+                    aria-expanded="true" aria-controls="collapseVehicle">
+                    <span style="font-size:small; color:white;" class="sidebar-heading">Araç İşlemleri</span>
+                </a>
+                <div id="collapseVehicle" class="collapse" aria-labelledby="headingVehicle" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <a class="collapse-item" asp-action="Vehicle" asp-controller="User">Tüm Araçlar</a>
+
+                    </div>
+                </div>
+            </li>
+
+            <hr class="sidebar-divider">
+
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseHouse"
+                    aria-expanded="true" aria-controls="collapseHouse">
+                    <span style="font-size:small; color:white;" class="sidebar-heading">Daire İşlemleri</span>
+                </a>
+                <div id="collapseHouse" class="collapse" aria-labelledby="headingHouse" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <a class="collapse-item" asp-action="Housing" asp-controller="User">Tüm Daireler</a>
+                    </div>
+                </div>
+            </li>
+
+            <!-- Divider -->
+            <hr class="sidebar-divider d-none d-md-block">
+
+            <!-- Sidebar Toggler (Sidebar) -->
+            <div class="text-center d-none d-md-inline">
+                <button class="rounded-circle border-0" id="sidebarToggle"></button>
+            </div>
+
+        </ul>

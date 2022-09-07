@@ -21,7 +21,7 @@ namespace BusinessLayer.Features.Queries.AdminUser.GetByIdUser
 
         public async Task<GetByIdUserQueryResponse> Handle(GetByIdUserQueryRequest request, CancellationToken cancellationToken)
         {
-            User user   = await _userReadRepository.GetByIdAsync(request.Id);
+            EntityLayer.Entities.User user   = await _userReadRepository.GetByIdAsync(request.Id);
             return new()
             {
                 User = user

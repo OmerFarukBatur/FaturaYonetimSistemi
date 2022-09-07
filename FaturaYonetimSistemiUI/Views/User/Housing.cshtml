@@ -1,0 +1,66 @@
+﻿
+@{
+    ViewData["Title"] = "Housing";
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+}
+
+<div class="container-fluid">
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h1 class="m-0 font-weight-bold text-primary" >Daireler</h1>
+
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th>Blok No</th>
+                            <th>Kat No</th>
+                            <th>Daire No</th>
+                            <th>Daire Tipi</th>
+                            <th>Daire Durumu</th>
+                            <th>Kayıt Tarihi</th>
+                            <th>Güncellenme Tarihi</th>
+                        </tr>
+                    </thead>
+                    <tfoot>
+                        <tr>
+                            <th>Blok No</th>
+                            <th>Kat No</th>
+                            <th>Daire No</th>
+                            <th>Daire Tipi</th>
+                            <th>Daire Durumu</th>
+                            <th>Kayıt Tarihi</th>
+                            <th>Güncellenme Tarihi</th>
+                        </tr>
+                    </tfoot>
+                    <tbody>
+                        @foreach (var item in @Model)
+                        {
+                            <tr>
+                                <td>@item.BlockNumber</td>
+                                <td>@item.FloorNumber</td>
+                                <td>@item.HousNumber</td>
+                                <td>@item.HousType</td>
+                                @if (@item.Status)
+                                {
+                                    <td>Aktif</td>
+                                }
+                                else
+                                {
+                                    <td>Pasif</td>
+                                }
+                                <td>@item.CreatedDate</td>
+                                <td>@item.UpdatedDate</td>                                
+                            </tr>
+                        }
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+</div>
+
